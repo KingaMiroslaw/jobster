@@ -2,6 +2,7 @@ import { FormRow, FormRowSelect } from "../../components";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import styled from "styled-components";
+import { handleChange } from "../../features/job/jobSlice";
 
 function AddJob() {
   const {
@@ -17,6 +18,8 @@ function AddJob() {
     editJobId,
   } = useSelector((store) => store.job);
 
+  const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -29,7 +32,7 @@ function AddJob() {
   const handleJobInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    console.log(name, value);
+    dispatch(handleChange({ name, value }));
   };
 
   return (
