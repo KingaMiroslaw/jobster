@@ -46,7 +46,10 @@ const jobSlice = createSlice({
       state[name] = value;
     },
     clearValues: () => {
-      return initialState;
+      return {
+        ...initialState,
+        jobLocation: getUserFromLocalStorage()?.location || "",
+      };
     },
   },
   extraReducers: (builder) => {
@@ -56,14 +59,15 @@ const jobSlice = createSlice({
       })
       .addCase(createJob.fulfilled, (state) => {
         state.isLoading = false;
-        toast.success('Job Created');
+        toast.success("Job Created");
       })
       .addCase(createJob.rejected, (state, { payload }) => {
         state.isLoading = false;
         toast.error(payload);
-      })
-}});
+      });
+  },
+});
 
-export const { handleChange, clearValues} = jobSlice.actions;
+export const { handleChange, clearValues } = jobSlice.actions;
 
 export default jobSlice.reducer;
