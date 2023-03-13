@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import BarChart from "./BarChart";
-import AreaChart from "./AreaChart";
+import BarChartComponent from "./BarChart";
+import AreaChartComponent from "./AreaChart";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 
 function ChartsContainer() {
   const [barChart, setBarChart] = useState(true);
-  const { monthlyApplication: data } = useSelector((store) => store.allJobs);
+  const { monthlyApplications: data } = useSelector((store) => store.allJobs);
 
   return (
     <Wrapper>
@@ -14,7 +14,11 @@ function ChartsContainer() {
       <button type="button" onClick={() => setBarChart(!barChart)}>
         {barChart ? "Display: Area Chart" : "Display: Bar Chart"}
       </button>
-      {barChart ? <BarChart data={data} /> : <AreaChart data={data} />}
+      {barChart ? (
+        <BarChartComponent data={data} />
+      ) : (
+        <AreaChartComponent data={data} />
+      )}
     </Wrapper>
   );
 }
