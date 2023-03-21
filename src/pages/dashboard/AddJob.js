@@ -62,7 +62,7 @@ function AddJob() {
         })
       );
     }
-  }, []);
+  }, [dispatch, isEditing, user.location]);
 
   return (
     <Wrapper>
