@@ -27,7 +27,7 @@ function App() {
           <Route path="add-job" element={<AddJob />} />
           <Route path="profile" element={<Profile />} />
         </Route>
-        <Route path="landing" element={<Landing />} />
+        <Route path="jobster" element={<Landing />} />
         <Route path="register" element={<Register />} />
         <Route path="*" element={<Error />} />
       </Routes>
